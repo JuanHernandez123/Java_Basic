@@ -18,9 +18,9 @@ public class Swapping {
 		// b=temp;
 
 		// without using temporary varaible
-		a = a + b;
-		b = a - b;
-		a = a - b;
+		a = a + b; // 30
+		b = a - b; // 10
+		a = a - b; // 20
 
 		System.out.println("After Swap:");
 		System.out.println("a is :" + a);

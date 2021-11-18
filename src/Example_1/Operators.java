@@ -37,7 +37,7 @@ public class Operators {
 		System.out.println(!x); //false
 		System.out.println(!y); //true
 		
-		//increment/decrement operators  ++  --
+		System.out.println("increment/decrement operators  ++  --");
 		
 		a=10;
 		a++;      //a=a+1;
