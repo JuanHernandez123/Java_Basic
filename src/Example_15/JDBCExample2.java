@@ -17,35 +17,45 @@ import java.sql.Statement;
 public class JDBCExample2 {
 
 	public static void main(String[] args) throws SQLException {
-		
-		//Create a connection
-		
-			
-		Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/pdborcl","hr","hr");
 
-		//Create a query/statement
-		Statement stmt=con.createStatement();
-		String s="select employee_id,first_name,last_name from employees";
-		
-		//Execute statement/query
-		ResultSet rs=stmt.executeQuery(s);
-		
-		while(rs.next())
-			{
-				int eid=rs.getInt("EMPLOYEE_ID");
-				String fname=rs.getString("FIRST_NAME");
-				String lname=rs.getString("LAST_NAME");
-				System.out.println(eid+"          "+fname+"        "+lname);
+		// Create a connection
+
+		// Connection -- take into account the bd version to implement the correct syntax to connect
+		// con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/pdborcl","system","database.123");
+
+		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "database.123");
+
+		// Create a query/statement
+		Statement stmt = con.createStatement();
+	
+
+		 String s="select user#,name,logmnr_uid,logmnr_flags,spare1 from  logmnr_user$";
+
+		// Execute statement/query
+		ResultSet rs = stmt.executeQuery(s);
+
+		System.out.println(rs.getRow());
+
+		while (rs.next()) {
+			System.out.println("Entró al while");
 			
-			}
-			
-		//close connection
+			  int userID=rs.getInt("user#"); String name=rs.getString("name"); int
+			  logmnr_uid=rs.getInt("logmnr_uid"); int
+			  logmnr_flags=rs.getInt("logmnr_flags"); int spare1 = rs.getInt("spare1");
+			  
+			  System.out.println("userID:: " + userID); System.out.println("name:: " +
+			  name); System.out.println("logmnr_uid::" + logmnr_uid);
+			  System.out.println("logmnr_flags::  " + logmnr_flags);
+			  System.out.println("spare1:: " + spare1);
+
+		}
+
+		// close connection
 		con.close();
-		
+		System.out.println("con.isClosed() " + con.isClosed());
+
 		System.out.println("Program is completed");
-		
-		
-		
+
 	}
 
 }
